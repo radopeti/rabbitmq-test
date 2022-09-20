@@ -1,0 +1,7 @@
+micronaut:
+  application:
+    name: rabbitmqTest
+netty:
+  default:
+    allocator:
+      max-order: 3
