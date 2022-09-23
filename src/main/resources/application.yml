@@ -5,3 +5,11 @@ netty:
   default:
     allocator:
       max-order: 3
+test-resources:
+  containers:
+    rabbitmq:
+      image-name: rabbitmq:3
+rabbitmq:
+  uri: amqp://localhost:5672
+  username: guest
+  password: guest
