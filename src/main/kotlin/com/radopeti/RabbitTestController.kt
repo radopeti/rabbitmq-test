@@ -17,6 +17,11 @@ class RabbitTestController(
         rabbitTestClient.sendMessage(messageTemplate.message)
     }
 
+    @Post("/message/route")
+    fun sendRoutedMessage(messageTemplate: MessageTemplate) {
+        rabbitTestClient.sendRoutedMessage(messageTemplate.message)
+    }
+
     @Post("/message/fanout")
     fun sendFanoutMessage(messageTemplate: MessageTemplate) {
         log.info("${messageTemplate.message} received")

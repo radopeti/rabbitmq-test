@@ -11,10 +11,15 @@ class ChannelPoolListener : ChannelInitializer() {
 
     @Throws(IOException::class)
     override fun initialize(channel: Channel, name: String) {
+        //direct exchange with two queues binded
         channel.exchangeDeclare("micronaut", BuiltinExchangeType.DIRECT, true)
         channel.queueDeclare("analytics", true, false, false, null)
         channel.queueBind("analytics", "micronaut", "analytics")
 
+        channel.queueDeclare("routed", true, false, false, null)
+        channel.queueBind("routed", "micronaut", "route66")
+
+        //fanout exchange, routing key is ignore (it could be anything)
         channel.exchangeDeclare("fanout", BuiltinExchangeType.FANOUT)
         channel.queueDeclare("fanOne", true, false, false, null)
         channel.queueBind("fanOne", "fanout", "routing")
