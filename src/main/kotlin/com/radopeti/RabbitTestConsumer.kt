@@ -29,4 +29,18 @@ class RabbitTestConsumer {
     ) {
         println("routed message received $message | envelope: $envelope")
     }
+
+    @Queue("employees")
+    fun getEmployeesTopic(
+        message: String
+    ) {
+        println("topic employees received: $message")
+    }
+
+    @Queue("executives")
+    fun getExecutivesTopic(
+        message: String
+    ) {
+        println("topic executives received: $message")
+    }
 }

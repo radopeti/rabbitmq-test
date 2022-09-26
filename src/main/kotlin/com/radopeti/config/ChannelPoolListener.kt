@@ -26,5 +26,13 @@ class ChannelPoolListener : ChannelInitializer() {
 
         channel.queueDeclare("fanTwo", true, false, false, null)
         channel.queueBind("fanTwo", "fanout", "key")
+
+        //topic exchange with two queues
+        channel.exchangeDeclare("topic", BuiltinExchangeType.TOPIC)
+        channel.queueDeclare("employees", true, false, false, null)
+        channel.queueBind("employees", "topic", "topic.employees")
+
+        channel.queueDeclare("executives", true, false, false, null)
+        channel.queueBind("executives", "topic", "topic.executives")
     }
 }
